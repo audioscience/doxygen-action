@@ -8,13 +8,40 @@ inputs:
     description: 'Path to Doxyfile'
     required: true
     default: './Doxyfile'
-  working-directory:
+  working-dir:
     description: 'Working directory'
     required: true
     default: '.'
+  output-dir:
+    description: 'Output directory'
+    required: true
+    default: '.'
+  hpi-dir:
+    description: 'HPI directory'
+    required: true
+    default: '.'
+  module-type:
+    description: 'Either asx OR hpi'
+    required: true
+    default: 'asx'
+  ftp-user:
+    description: 'FTP username'
+    required: true
+    default: 'none'
+  ftp-pwd:
+    description: 'FTP password'
+    required: true
+    default: 'none'
+
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
     - ${{ inputs.doxyfile-path }}
-    - ${{ inputs.working-directory }}
+    - ${{ inputs.working-dir }}
+    - ${{ inputs.output-dir }}
+    - ${{ inputs.hpi-dir }}
+    - ${{ inputs.module-type }}
+    - ${{ inputs.ftp-user }}
+    - ${{ inputs.ftp-pwd }}
+
